@@ -5,7 +5,7 @@ using UnityEngine;
 public class Artikel : MonoBehaviour {
 
     EnumArtikelkategorie artikelkategorie;
-    string name;
+    string artikelname;
     // Use this for initialization
     void Start () {
 		
@@ -18,9 +18,12 @@ public class Artikel : MonoBehaviour {
 
     public string getName()
     {
-        return this.name;
+        return this.artikelname;
     }
-
+    public void setName(string neuerName)
+    {
+        this.artikelname = neuerName;
+    }
     public string getKategorie()
     {
         string kategorie= null;

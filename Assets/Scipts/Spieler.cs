@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Spieler : MonoBehaviour {
-    string name;
+    string spielername;
     int punkte;
 
 	// Use this for initialization
@@ -17,10 +17,10 @@ public class Spieler : MonoBehaviour {
 	}
     public void setName(string neuerName)
     {
-        this.name = neuerName;
+        this.spielername = neuerName;
     }
     public string getName()
     {
-        return name;
+        return spielername;
     }
 }
