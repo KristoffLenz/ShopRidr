@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Artikel : MonoBehaviour {
 
-    public enum artikelKategorie { Gemüse, Obst, Getränke, Backwaren };
+    EnumArtikelkategorie artikelkategorie;
     string name;
     // Use this for initialization
     void Start () {
