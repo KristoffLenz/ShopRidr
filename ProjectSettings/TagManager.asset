@@ -6,6 +6,7 @@ TagManager:
   tags:
   - testtag
   - Fach
+  - Fliese
   layers:
   - Default
   - TransparentFX
