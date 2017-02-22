@@ -5,6 +5,7 @@ using UnityEngine;
 public class EinkaufszettelPosition : MonoBehaviour {
     int anzahl;
     bool erledigt;
+    string artikelname;
 	// Use this for initialization
 	void Start () {
 		
@@ -17,5 +18,17 @@ public class EinkaufszettelPosition : MonoBehaviour {
     public void toggleErledigt()
     {
 
+    }
+    public bool getArtikelErledigt()
+    {
+        return erledigt;
+    }
+    public int getAnzahl()
+    {
+        return anzahl;
+    }
+    public string getArtikelname()
+    {
+        return artikelname;
     }
 }
