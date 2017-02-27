@@ -2,59 +2,94 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System;
 
 public class Einkaufszettel : MonoBehaviour {
 
     string auftraggeber;
     int nrArtikel = 0;
-    int abstandArtikelY = 1180;
+    int abstandArtikelY = 833;
     int abstandAuftraggeberY = 780;
-    public Text einkaufszettelName;
+    public GameObject einkaufszettelName;
     public GameObject prefabToggle;
     public GameObject prefabButton;
+    public GameObject parentPanelGo;
     public RectTransform parentPanel;
     public GameObject prefabArtikelText;
+    LinkedList<string> auftraggListe;
     ArrayList zettel = new ArrayList();
     ArrayList toggles = new ArrayList();
     ArrayList texts = new ArrayList();
+    bool geladen = false;
+
+   
 
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+   
+    public Einkaufszettel(ArrayList ze, string auftr, LinkedList<string> listeAuftr, int posPanel)
+    {
+        auftraggListe = listeAuftr;
+        zettel = ze;
+        auftraggeber = auftr;
+
+        einkaufszettelName = GameObject.FindWithTag("EinkaufszettelName");
+        prefabArtikelText = GameObject.FindWithTag("PrefabArtikeltext");
+        prefabToggle = GameObject.FindWithTag("PrefabToggle");
+        parentPanelGo = GameObject.FindWithTag("ParentPanel");
+        parentPanel = (RectTransform)parentPanelGo.transform;
+
+       
+        System.Random zufall = new System.Random();
+        foreach (EinkaufszettelPosition ein in zettel)
+        {
+            
+            int number = zufall.Next(1, 5);
+            ein.setAnzahl(number);
+            Debug.Log("" + number);
+        }
+        if (posPanel == 0)
+        {
+            anzeigen();
+        }
+        
+        
+    }
+ 
     public void anzeigen()
     {
-        foreach (EinkaufszettelPosition s in zettel)
-        {
-            if (nrArtikel != 0)
+        einkaufszettelName.GetComponent<Text>().text = auftraggeber; 
+            zettel = Level.zettel1;
+            foreach (EinkaufszettelPosition s in zettel)
             {
-                GameObject goArtikel = (GameObject)Instantiate(prefabArtikelText);
-                goArtikel.transform.SetParent(parentPanel, false);
-                goArtikel.transform.position = new Vector3(960, abstandArtikelY, 0);
-                goArtikel.GetComponent<Text>().text = s.getAnzahl() + " x " + s.getArtikelname();
+            Debug.Log("Geht");
+                if (nrArtikel != 0)
+                {
+                    GameObject goArtikel = (GameObject)Instantiate(prefabArtikelText);
+                    goArtikel.transform.SetParent(parentPanel, false);
+                   
+                    goArtikel.transform.position = new Vector3(617, abstandArtikelY, 0);
+                    goArtikel.GetComponent<Text>().text = s.getAnzahl() + " x " + s.getArtikelname();
 
-                GameObject goToggle = (GameObject)Instantiate(prefabToggle);
-                goToggle.transform.SetParent(parentPanel, false);
-                goToggle.transform.position = new Vector3(2005, abstandArtikelY + 10, 0);
-                goToggle.GetComponent<Toggle>().isOn = s.getArtikelErledigt();
-                texts.Add(goArtikel);
-                toggles.Add(goToggle);
+                    GameObject goToggle = (GameObject)Instantiate(prefabToggle);
+                    goToggle.transform.SetParent(parentPanel, false);
+                    goToggle.transform.position = new Vector3(1455, abstandArtikelY -15, 0);
+                    goToggle.GetComponent<Toggle>().isOn = s.getArtikelErledigt();
+                    texts.Add(goArtikel);
+                    toggles.Add(goToggle);
+                }
+                else
+                {
+                    Debug.Log("Prefabartikel2" + prefabArtikelText);
+                   
+                    prefabArtikelText.GetComponent<Text>().text = s.getAnzahl() + " x " + s.getArtikelname();
+                    prefabToggle.GetComponent<Toggle>().isOn = s.getArtikelErledigt();
+                    texts.Add(prefabArtikelText);
+                    toggles.Add(prefabToggle);
+                }
+                abstandArtikelY = abstandArtikelY - 80;
+                nrArtikel++;
             }
-            else
-            {
-                prefabArtikelText.GetComponent<Text>().text = s.getAnzahl() + " x " + s.getArtikelname();
-                prefabToggle.GetComponent<Toggle>().isOn = s.getArtikelErledigt();
-                texts.Add(prefabArtikelText);
-                toggles.Add(prefabToggle);
-            }
-            abstandArtikelY = abstandArtikelY - 130;
-            nrArtikel++;
         }
     }
-}
+

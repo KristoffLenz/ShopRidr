@@ -8,6 +8,11 @@ TagManager:
   - Fach
   - Fliese
   - Regal
+  - Test
+  - PrefabArtikeltext
+  - PrefabToggle
+  - ParentPanel
+  - EinkaufszettelName
   layers:
   - Default
   - TransparentFX
