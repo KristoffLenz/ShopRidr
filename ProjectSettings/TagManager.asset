@@ -13,6 +13,7 @@ TagManager:
   - PrefabToggle
   - ParentPanel
   - EinkaufszettelName
+  - PrefabButton
   layers:
   - Default
   - TransparentFX

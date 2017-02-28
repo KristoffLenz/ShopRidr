@@ -23,7 +23,7 @@ public class EinkaufszettelPosition : MonoBehaviour
 	}
     public void toggleErledigt()
     {
-
+        erledigt = !erledigt;
     }
     public bool getArtikelErledigt()
     {
