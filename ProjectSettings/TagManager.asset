@@ -15,6 +15,7 @@ TagManager:
   - EinkaufszettelName
   - PrefabButton
   - Einkaufswagen
+  - PositionZettel
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScreenHandler : MonoBehaviour
 {
@@ -12,50 +13,25 @@ public class ScreenHandler : MonoBehaviour
     public void changeSceneToNavigationsansicht()
     {
         Debug.Log("ChangeToNavigationsansicht");
-        RectTransform panelAktuell;
-        if (einkaufszettelansicht.GetComponent<RectTransform>().position == new Vector3(400, 126, 100))
-        {
-            panelAktuell = einkaufszettelansicht;
-        }
-        else
-        {
-            panelAktuell = regalansicht;
-        }
-        navigationsansicht.GetComponent<RectTransform>().transform.position = panelAktuell.GetComponent<RectTransform>().transform.position;
-        panelAktuell.GetComponent<RectTransform>().transform.position = new Vector3(-1000, -1000, 0);
+        SceneManager.LoadScene("Navigationsansicht");
     }
 
     public void changeSceneToRegalansicht()
     {
         Debug.Log("ChangeToRegalansicht");
-        RectTransform panelAktuell;
-        if (einkaufszettelansicht.GetComponent<RectTransform>().position == new Vector3(400, 126, 100))
-        {
-            panelAktuell = einkaufszettelansicht;
-        }
-        else
-        {
-            panelAktuell = navigationsansicht;
-        }
-        regalansicht.GetComponent<RectTransform>().transform.position = panelAktuell.GetComponent<RectTransform>().transform.position;
-        panelAktuell.GetComponent<RectTransform>().transform.position = new Vector3(-1000, -1000, 0);
+        SceneManager.LoadScene("Regalansicht");
     }
     public void changeSceneToEinkaufszettelansicht()
     {
         Debug.Log("ChangeToEinkaufszettelansicht");
-        RectTransform panelAktuell;
-        if (regalansicht.GetComponent<RectTransform>().position == new Vector3(400, 126, 100))
-        {
-            panelAktuell = regalansicht;
-        }
-        else
-        {
-            panelAktuell = navigationsansicht;
-
-        }
-        einkaufszettelansicht.GetComponent<RectTransform>().transform.position = panelAktuell.GetComponent<RectTransform>().transform.position;
-        panelAktuell.GetComponent<RectTransform>().transform.position = new Vector3(-1000, -1000, 0);
-        Debug.Log("Position" + einkaufszettelansicht.GetComponent<RectTransform>().transform.position);
+        SceneManager.LoadScene("Einkaufszettelansicht");
+    }
+    
+    public void zurück(string szene)
+    {
+        Debug.Log("ChangeToLastScene");
+        SceneManager.LoadScene(szene);
+        
     }
     // Use this for initialization
     void Start()

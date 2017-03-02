@@ -10,7 +10,7 @@ public class Einkaufszettel : MonoBehaviour
 
     string auftraggeber;
     int nrArtikel = 0;
-    int abstandArtikelY = 833;
+    int abstandArtikelY = 875;
     public GameObject einkaufszettelName;
     public GameObject prefabToggle;
     public GameObject prefabButton;
@@ -23,7 +23,7 @@ public class Einkaufszettel : MonoBehaviour
    public  ArrayList texts = new ArrayList();
     public bool zeigen;
     GameObject goButton;
-
+    GameObject positionZettel;
 
 
     public Einkaufszettel(ArrayList ze, string auftr, ArrayList listeAuftr, bool zeigen)
@@ -38,6 +38,7 @@ public class Einkaufszettel : MonoBehaviour
         parentPanelGo = GameObject.FindWithTag("ParentPanel");
         parentPanel = (RectTransform)parentPanelGo.transform;
         prefabButton = GameObject.FindWithTag("PrefabButton");
+        positionZettel = GameObject.FindWithTag("PositionZettel");
 
         System.Random zufall = new System.Random();
         foreach (EinkaufszettelPosition ein in zettel)
@@ -60,6 +61,8 @@ public class Einkaufszettel : MonoBehaviour
         
 
         int positionAuftraggeber = auftraggListe.IndexOf(auftraggeber);
+
+        positionZettel.GetComponent<Text>().text = "Einkaufszettel " + (positionAuftraggeber + 1) + " / " + auftraggListe.Count;
 
         goButton = (GameObject)Instantiate(prefabButton);
         goButton.transform.SetParent(parentPanel, false);
