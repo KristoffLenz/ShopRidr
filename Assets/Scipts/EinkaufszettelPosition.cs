@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EinkaufszettelPosition : MonoBehaviour {
-    int anzahl;
-    bool erledigt;
+public class EinkaufszettelPosition : MonoBehaviour
+{
+    int anzahl = 1;
+    bool erledigt=false;
     string artikelname;
+
+    public EinkaufszettelPosition(string name)
+    {
+        this.artikelname = name;
+    }
 	// Use this for initialization
 	void Start () {
 		
@@ -17,7 +23,7 @@ public class EinkaufszettelPosition : MonoBehaviour {
 	}
     public void toggleErledigt()
     {
-
+        erledigt = !erledigt;
     }
     public bool getArtikelErledigt()
     {
@@ -30,5 +36,9 @@ public class EinkaufszettelPosition : MonoBehaviour {
     public string getArtikelname()
     {
         return artikelname;
+    }
+    public void setAnzahl(int an)
+    {
+        anzahl = an;
     }
 }
