@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222287469218936634}
   - component: {fileID: 114600552143340492}
   - component: {fileID: 114864767235275990}
+  - component: {fileID: 114956248851920450}
   m_Layer: 5
   m_Name: Fach
   m_TagString: Fach
@@ -79,6 +80,17 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &114956248851920450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901493640911854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ea754f92cfa7d45ab72c3a97782f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222287469218936634
 CanvasRenderer:
   m_ObjectHideFlags: 1
