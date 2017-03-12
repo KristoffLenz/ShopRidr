@@ -5,7 +5,11 @@ using UnityEngine;
 public class Artikel : MonoBehaviour {
 
     EnumArtikelkategorie artikelkategorie;
-    string artikelname;
+    string bezeichnung;
+    string marke;
+    public UnityEngine.UI.Text UIBezeichnung;
+    public UnityEngine.UI.Text UIMarke;
+
     // Use this for initialization
     void Start () {
 		
@@ -18,11 +22,11 @@ public class Artikel : MonoBehaviour {
 
     public string getName()
     {
-        return this.artikelname;
+        return this.bezeichnung;
     }
     public void setName(string neuerName)
     {
-        this.artikelname = neuerName;
+        this.bezeichnung = neuerName;
     }
     public string getKategorie()
     {
@@ -32,5 +36,11 @@ public class Artikel : MonoBehaviour {
     public void anzeigen()
     {
 
+    }
+
+    public void anzeigeLöschen()
+    {
+        UIBezeichnung.text = "";
+        UIMarke.text = "";
     }
 }
