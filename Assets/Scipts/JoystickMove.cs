@@ -2,33 +2,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CnControls;
 
-public class MoveHandler : MonoBehaviour {
+public class JoystickMove : MonoBehaviour {
 
     // all possible move directions
     enum Direction { UP, DOWN, LEFT, RIGHT, NONE }
     // The move's direction
     Direction moveDirection;
-
+    //
     private bool disabled = false;
     //                                               UP     DOWN   LEFT   RIGHT
     private bool[] disabledDirections = new bool[4] {false, false, false, false};
 
+    private int x = 0;
+
     // Update is called once per frame
-    void Update(){
+    void Update()
+    {
+        if (x++ != 4)
+        {
+            return;
+        }
+        x = 0;
+
+        float hAxis = CnInputManager.GetAxis("Horizontal");
+        float vAxis = CnInputManager.GetAxis("Vertical");
 
         // Get the move direction
-        if (Input.GetKeyDown (KeyCode.UpArrow)) {
+        if (vAxis == 1F) {
             moveDirection = Direction.UP;
-        } else if (Input.GetKeyDown (KeyCode.DownArrow)) {
+        } else if (vAxis == -1F) {
             moveDirection = Direction.DOWN;
-        } else if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+        } else if (hAxis == -1F)
+        {
             moveDirection = Direction.LEFT;
-        } else if (Input.GetKeyDown (KeyCode.RightArrow)) {
+        } else if (hAxis == 1F) {
             moveDirection = Direction.RIGHT;
         }
 
-        // make a move if a button was pressed and the direction is enabled
+        // If the next update is reached
         if (moveDirection != Direction.NONE && !disabledDirections[(int) moveDirection])
             MakeMove();
 
@@ -36,7 +49,6 @@ public class MoveHandler : MonoBehaviour {
 
     // Move the player up, down, left or right by one field
     void MakeMove() {
-
         Debug.Log ("Moving " + moveDirection);
         switch (moveDirection) {
             case Direction.UP:
@@ -52,27 +64,18 @@ public class MoveHandler : MonoBehaviour {
                 transform.position += new Vector3 (1, 0, 0);
                 break;
         }
-
         moveDirection = Direction.NONE;
-
     }
-
     // When colliding
     void OnCollisionEnter2D(Collision2D coll) {
-
         Debug.Log("Touching Collider");
-
         const float safetyMargin = 0.2F;
-
         float playerX = gameObject.GetComponent<Transform>().position.x;
         float playerY = gameObject.GetComponent<Transform>().position.y;
         float collX = coll.gameObject.GetComponent<Transform>().position.x;
         float collY = coll.gameObject.GetComponent<Transform>().position.y;
-
         float xDistance = collX - playerX;
         float yDistance = collY - playerY;
-
-
         if (coll.gameObject.CompareTag("Regal"))
         {
             // if on the left side of Regal
@@ -88,9 +91,7 @@ public class MoveHandler : MonoBehaviour {
             if (yDistance > safetyMargin && yDistance < 1F + safetyMargin && Math.Abs(collX - playerX) < safetyMargin)
                 disabledDirections[(int) Direction.UP] = true;
         }
-
     }
-
     void OnCollisionExit2D(Collision2D coll) {
         Debug.Log("Not touching Collider anymore");
         for (int i = 0; i < 4; i++)
