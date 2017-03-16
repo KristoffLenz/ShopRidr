@@ -10,8 +10,7 @@ public class Einkaufswagen : MonoBehaviour, IHasChanged
     int positionY;
     [SerializeField]
     ArrayList laderaum = new ArrayList();
-    [SerializeField]
-    Transform faecher;
+    [SerializeField] Transform faecher;
 
     // Use this for initialization
     void Start()
@@ -68,15 +67,18 @@ public class Einkaufswagen : MonoBehaviour, IHasChanged
     public void HasChanged()
     {
 
-        foreach (Transform slotTransform in faecher)
+        foreach (Transform fachTransform in faecher)
         {
-            GameObject artikel = slotTransform.GetComponent<Fach>().artikel;
-
-            if (artikel)
+            if(fachTransform.tag == "Fach")
             {
-                laderaum.Insert(0, artikel);
-                artikel.GetComponent<Image>().enabled = false;
-                artikel.GetComponent<Artikel>().anzeigeLöschen();
+                GameObject artikel = fachTransform.GetComponent<Fach>().artikel;
+
+                if (artikel)
+                {
+                    laderaum.Insert(0, artikel);
+                    artikel.GetComponent<Image>().enabled = false;
+                    artikel.GetComponent<Artikel>().anzeigeLöschen();
+                }
             }
 
         }

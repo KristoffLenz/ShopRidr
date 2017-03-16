@@ -16,6 +16,8 @@ TagManager:
   - PrefabButton
   - Einkaufswagen
   - PositionZettel
+  - Ebene
+  - Artikel
   layers:
   - Default
   - TransparentFX

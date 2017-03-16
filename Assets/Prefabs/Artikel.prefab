@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 222706782517927562}
   - component: {fileID: 114308926169353412}
   - component: {fileID: 114791997341621084}
+  - component: {fileID: 114656331929275316}
   m_Layer: 5
   m_Name: Artikel
   m_TagString: Untagged
@@ -156,6 +157,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Marke
+--- !u!114 &114656331929275316
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1849665208090340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ea51e38a167aa42acb90c61183f0bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIBezeichnung: {fileID: 114003772392205868}
+  UIMarke: {fileID: 114444634180235684}
 --- !u!114 &114791997341621084
 MonoBehaviour:
   m_ObjectHideFlags: 1

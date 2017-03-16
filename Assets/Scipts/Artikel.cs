@@ -12,8 +12,27 @@ public class Artikel : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+       
 	}
+
+    public void init(string pBezeichnung, string pMarke)
+    {
+        UnityEngine.UI.Text[] textFields = FindObjectsOfType<UnityEngine.UI.Text>();
+        if (textFields[0].name == "Bezeichnung")
+        {
+            UIBezeichnung = textFields[0];
+            UIMarke = textFields[1];
+        }
+        else
+        {
+            UIBezeichnung = textFields[1];
+            UIMarke = textFields[0];
+        }
+        bezeichnung = pBezeichnung;
+        marke = pMarke;
+        UIBezeichnung.text = bezeichnung;
+        UIMarke.text = marke;
+    } 
 	
 	// Update is called once per frame
 	void Update () {

@@ -29,6 +29,10 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         {
             transform.position = startPosition;
         }
+        else if (startParent.childCount > 0)
+        {
+            startParent.GetChild(0).gameObject.SetActive(true);
+        }
 
     }
 
